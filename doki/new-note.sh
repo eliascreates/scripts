@@ -4,8 +4,9 @@
 # Usage: doki [topic] [--new|-n] [--open|-o] [--help|-h]
 
 NOTES_DIR="$HOME/dev/notes"
-DATE=$(date -u +"%Y-%m-%d")
-TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%S")
+DATE=$(date +"%Y-%m-%d")
+TIMESTAMP=$(date +"%Y-%m-%dT%H-%M-%S")
+TIMESTAMP_DISPLAY=$(date +"%Y-%m-%dT%H:%M:%S")
 NEW_FLAG=false
 OPEN_FLAG=false
 TOPIC=""
@@ -89,9 +90,9 @@ fi
 # Create with template if it doesn't exist
 if [[ ! -f "$TARGET" ]]; then
   cat > "$TARGET" <<EOF
-# ${TOPIC^} Note – $TIMESTAMP
+# ${TOPIC^} Note – $TIMESTAMP_DISPLAY
 
-> 📅 Date: $(date +"%Y-%m-%d %H:%M:%S")  
+> 📅 Date: $TIMESTAMP_DISPLAY
 > 🏷️ Tags: #$TOPIC #learning #dev  
 
 ---
